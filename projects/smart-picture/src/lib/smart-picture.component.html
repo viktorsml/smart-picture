@@ -1,0 +1,15 @@
+<div class="picture-holder" [class.animated-background]="!settings.disablePlaceholder">
+  <picture *ngIf="shouldPictureLoad" [@fadeIn]>
+    <source [type]="reformatType(settings.source.main.type)" [srcset]="settings.source.main.url" />
+    <source *ngIf="settings.source.fallback" [type]="reformatType(settings.source.fallback.type)" [srcset]="settings.source.fallback.url" />
+    <img
+      class="fit-image {{ settings.size }}"
+      [src]="settings.source.fallback ? settings.source.fallback.url : settings.source.main.url"
+      [alt]="settings.alt ? settings.alt : ''"
+      [attr.aria-hidden]="settings.ariaHidden"
+      [style.object-position]="settings.objectPosition ? settings.objectPosition : 'center'"
+      [style.width]="settings.isResponsive ? '100%' : 'inherit'"
+      [style.height]="settings.isResponsive ? '100%' : 'inherit'"
+    />
+  </picture>
+</div>
