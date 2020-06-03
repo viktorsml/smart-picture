@@ -1,23 +1,38 @@
+// filetypes from https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
+export type MIMEType =
+  | 'image/jpeg'
+  | 'image/apng'
+  | 'image/bmp'
+  | 'image/gif'
+  | 'image/x-icon'
+  | 'image/jpeg'
+  | 'image/png'
+  | 'image/svg+xml'
+  | 'image/tiff'
+  | 'image/webp';
+
+export type ObjectFitValues = 'fill' | 'contain' | 'cover' | 'none' | 'scale-down' | 'inherit' | 'initial' | 'unset';
 export interface SmartPictureSettings {
-  source: {
-    main: {
-      url: string;
-      type: string;
-    };
-    fallback?: {
-      url: string;
-      type: string;
-    };
+  src?: {
+    url?: string;
+    type?: MIMEType;
+    fallbackUrl?: string;
+    fallbackType?: MIMEType;
   };
   alt?: string;
-  ariaHidden?: string;
+  ariaHidden?: boolean;
 
-  isResponsive?: boolean;
-  disablePlaceholder?: boolean;
-  disableLazyLoad?: boolean;
+  placeholder?: boolean;
+  lazyLoad?: boolean;
 
-  objectPosition?: string;
-  size?: 'initial' | 'cover' | 'contain';
   heightRatio?: number;
   widthRatio?: number;
+
+  objectFit?: ObjectFitValues;
+  objectPosition?: string;
+}
+
+export interface PictureLoadEvent {
+  wasLazyLoaded: boolean;
+  settings: SmartPictureSettings;
 }
