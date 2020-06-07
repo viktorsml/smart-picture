@@ -1,6 +1,17 @@
-<lib-smart-picture
-  *ngFor="let e of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]"
-  [settings]="randomImageUrl(e)"
-  (pictureLoaded)="onPictureLoaded($event)"
-  alt="Placeholder image"
-></lib-smart-picture>
+<ng-smart-picture src="https://picsum.photos/seed/exampleImage/800/800.webp" type="image/webp">
+  <source srcset="https://picsum.photos/seed/exampleImage2/600/600.webp" type="image/webp" media="(min-width: 600px)" />
+</ng-smart-picture>
+
+<ng-smart-picture
+  src="https://picsum.photos/seed/exampleImage/800/600.webp"
+  type="image/webp"
+  fallbackSrc="https://picsum.photos/seed/exampleImage/800/600.jpg"
+  fallbackType="image/jpeg"
+  alt="An example image"
+  [ariaHidden]="true"
+  [lazyLoad]="true"
+  [heightRatio]="1"
+  [widthRatio]="1"
+  objectFit="cover"
+  objectPosition="center"
+></ng-smart-picture>

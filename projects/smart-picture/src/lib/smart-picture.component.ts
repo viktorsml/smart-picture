@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { isPlatformBrowser } from '@angular/common';
 import { Component, ElementRef, HostBinding, Inject, Input, OnInit, PLATFORM_ID, Output, EventEmitter } from '@angular/core';
 
@@ -13,7 +12,6 @@ const DEFAULT_SETTINGS: SmartPictureSettings = {
   },
   alt: '',
   ariaHidden: false,
-  placeholder: false,
   lazyLoad: true,
   heightRatio: null,
   widthRatio: null,
@@ -22,14 +20,9 @@ const DEFAULT_SETTINGS: SmartPictureSettings = {
 };
 
 @Component({
-  selector: 'lib-smart-picture',
+  selector: 'ng-smart-picture',
   templateUrl: './smart-picture.component.html',
   styleUrls: ['./smart-picture.component.scss'],
-  animations: [
-    trigger('fadeIn', [
-      transition(':enter', [style({ opacity: '0' }), animate('.5s cubic-bezier(.17,.67,.83,.67)', style({ opacity: '1' }))]),
-    ]),
-  ],
 })
 export class SmartPictureComponent implements OnInit {
   public isBrowser: boolean;
@@ -42,7 +35,6 @@ export class SmartPictureComponent implements OnInit {
   @Input() private fallbackType: MIMEType = DEFAULT_SETTINGS.src.fallbackType;
   @Input() private alt: string = DEFAULT_SETTINGS.alt;
   @Input() private ariaHidden: boolean = DEFAULT_SETTINGS.ariaHidden;
-  @Input() private placeholder: boolean = DEFAULT_SETTINGS.placeholder;
   @Input() private lazyLoad: boolean = DEFAULT_SETTINGS.lazyLoad;
   @Input() private heightRatio: number = DEFAULT_SETTINGS.heightRatio;
   @Input() private widthRatio: number = DEFAULT_SETTINGS.widthRatio;
@@ -64,12 +56,14 @@ export class SmartPictureComponent implements OnInit {
     if (this.isResponsive) {
       this.aspectRatio = `${this.pictureSettings.heightRatio / (this.pictureSettings.widthRatio / 100)}%`;
     }
-    this.loadImage(this.pictureSettings).then((wasLazyLoaded) => {
-      this.pictureLoaded.emit({
-        wasLazyLoaded,
-        settings: this.pictureSettings,
-      });
-    });
+    this.loadImage(this.pictureSettings)
+      .then((wasLazyLoaded) => {
+        this.pictureLoaded.emit({
+          wasLazyLoaded,
+          settings: this.pictureSettings,
+        });
+      })
+      .catch(console.error);
   }
 
   private getPictureSettings(): SmartPictureSettings {
@@ -82,7 +76,6 @@ export class SmartPictureComponent implements OnInit {
       },
       alt: this.alt,
       ariaHidden: this.ariaHidden,
-      placeholder: this.placeholder,
       lazyLoad: this.lazyLoad,
       heightRatio: this.heightRatio,
       widthRatio: this.widthRatio,
@@ -93,9 +86,9 @@ export class SmartPictureComponent implements OnInit {
   }
 
   private loadImage(settings: SmartPictureSettings): Promise<boolean> {
-    const canLazyLoad = isPlatformBrowser(this.platformId) ? window && 'IntersectionObserver' in window && settings.lazyLoad : false;
+    const canLazyLoad = isPlatformBrowser(this.platformId) ? window && 'IntersectionObserver' in window : false;
     return new Promise((resolve, reject) => {
-      if (!canLazyLoad) {
+      if (!canLazyLoad && !settings.lazyLoad) {
         this.shouldPictureLoad = true;
         resolve(canLazyLoad);
       } else {

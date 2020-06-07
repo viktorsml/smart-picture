@@ -5,7 +5,6 @@ export type MIMEType =
   | 'image/bmp'
   | 'image/gif'
   | 'image/x-icon'
-  | 'image/jpeg'
   | 'image/png'
   | 'image/svg+xml'
   | 'image/tiff'
@@ -14,15 +13,14 @@ export type MIMEType =
 export type ObjectFitValues = 'fill' | 'contain' | 'cover' | 'none' | 'scale-down' | 'inherit' | 'initial' | 'unset';
 export interface SmartPictureSettings {
   src?: {
-    url?: string;
-    type?: MIMEType;
+    url: string;
+    type: MIMEType;
     fallbackUrl?: string;
     fallbackType?: MIMEType;
   };
   alt?: string;
   ariaHidden?: boolean;
 
-  placeholder?: boolean;
   lazyLoad?: boolean;
 
   heightRatio?: number;

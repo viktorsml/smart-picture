@@ -1,6 +1,25 @@
 {
   "name": "smart-picture",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaychase/smart-picture.git"
+  },
+  "description": "A simple Angular library to lazy load images, make responsive images, and use next generation formats",
+  "homepage": "https://github.com/jaychase/smart-picture",
+  "bugs": {
+    "url": "https://github.com/viktorsml/smart-picture/issues"
+  },
+  "keywords": [
+    "Angular",
+    "image",
+    "picture",
+    "responsive",
+    "lazy load"
+  ],
+  "author": "Victor Samuel",
+  "license": "MIT",
+  "private": false,
   "peerDependencies": {
     "@angular/common": "^9.1.9",
     "@angular/core": "^9.1.9"
