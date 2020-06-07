@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SmartPictureComponent } from './smart-picture.component';
 
+// @dynamic
 @NgModule({
   declarations: [SmartPictureComponent],
   imports: [CommonModule, BrowserAnimationsModule],

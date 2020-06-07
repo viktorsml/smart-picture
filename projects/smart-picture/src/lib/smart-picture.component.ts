@@ -2,22 +2,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, ElementRef, HostBinding, Inject, Input, OnInit, PLATFORM_ID, Output, EventEmitter } from '@angular/core';
 
 import { SmartPictureSettings, MIMEType, ObjectFitValues, PictureLoadEvent } from './smart-picture.interfaces';
-
-const DEFAULT_SETTINGS: SmartPictureSettings = {
-  src: {
-    url: null,
-    type: null,
-    fallbackUrl: null,
-    fallbackType: null,
-  },
-  alt: '',
-  ariaHidden: false,
-  lazyLoad: true,
-  heightRatio: null,
-  widthRatio: null,
-  objectFit: 'contain',
-  objectPosition: 'center',
-};
+import { DEFAULT_SETTINGS } from './smart-picture.defaults';
 
 @Component({
   selector: 'ng-smart-picture',
@@ -41,12 +26,12 @@ export class SmartPictureComponent implements OnInit {
   @Input() private objectFit: ObjectFitValues = DEFAULT_SETTINGS.objectFit;
   @Input() private objectPosition: string = DEFAULT_SETTINGS.objectPosition;
   @Output() public pictureLoaded: EventEmitter<PictureLoadEvent> = new EventEmitter<PictureLoadEvent>();
-  @HostBinding('style.--object-fit') private bindObjectFit: string;
-  @HostBinding('style.--object-position') private bindObjectPosition: string;
-  @HostBinding('style.--aspect-ratio') private aspectRatio: string;
+  @HostBinding('style.--object-fit') public bindObjectFit: string;
+  @HostBinding('style.--object-position') public bindObjectPosition: string;
+  @HostBinding('style.--aspect-ratio') public aspectRatio: string;
   @HostBinding('class.isResponsive') public isResponsive: boolean;
 
-  constructor(private readonly el: ElementRef, @Inject(PLATFORM_ID) private readonly platformId: object) {}
+  constructor(private readonly el: ElementRef, @Inject(PLATFORM_ID) private readonly platformId: any) {}
 
   public ngOnInit(): void {
     this.pictureSettings = this.getPictureSettings();
