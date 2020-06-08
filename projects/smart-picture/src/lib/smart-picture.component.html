@@ -3,7 +3,6 @@
   <ng-container *ngIf="pictureSettings.src">
     <source *ngIf="pictureSettings.src.url" [srcset]="pictureSettings.src.url" [type]="pictureSettings.src.type" />
     <img
-      [class.initial]="!isResponsive"
       [style.width]="isResponsive ? '100%' : 'inherit'"
       [style.height]="isResponsive ? '100%' : 'inherit'"
       [attr.aria-hidden]="pictureSettings.ariaHidden"

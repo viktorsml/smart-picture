@@ -17,15 +17,8 @@ picture {
 
 img {
   display: block;
-
   object-fit: var(--object-fit);
   object-position: var(--object-position);
-
-  &.initial {
-    object-position: initial;
-    width: initial !important;
-    height: initial !important;
-  }
 }
 
 :host.isResponsive {
