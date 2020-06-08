@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jaychase/smart-picture.git"
+    "url": "https://github.com/viktorsml/smart-picture.git"
   },
   "description": "A simple Angular library to lazy load images, make responsive images, and use next generation formats",
-  "homepage": "https://github.com/jaychase/smart-picture",
+  "homepage": "https://github.com/viktorsml/smart-picture",
   "bugs": {
     "url": "https://github.com/viktorsml/smart-picture/issues"
   },
