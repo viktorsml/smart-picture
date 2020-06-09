@@ -15,23 +15,23 @@ describe('SmartPictureComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SmartPictureComponent);
     component = fixture.componentInstance;
+  });
+
+  it('should load when there is defined a "src" and "type" properties via manual input', () => {
+    component.src = '/some/image.png';
+    component.type = 'image/png';
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
+  });
+
+  it('should load when there is defined a "src" and "type" properties via object binding', () => {
     component.settings = {
-      isResponsive: true,
-      source: {
-        main: {
-          type: 'webp',
-          url: 'https://picsum.photos/1140/647?random=1.webp',
-        },
-        fallback: {
-          type: 'jpg',
-          url: 'https://picsum.photos/1140/647?random=5.webp',
-        },
+      src: {
+        url: '/some/image.png',
+        type: 'image/png',
       },
     };
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
