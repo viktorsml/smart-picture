@@ -22,6 +22,7 @@ export class AppComponent {
     objectFit: 'cover',
     objectPosition: 'center',
   };
+
   public randomImageUrl(seed: string): SmartPictureSettings {
     const API = `https://picsum.photos/seed/${seed}`;
     const SIZE = '/800/600';
