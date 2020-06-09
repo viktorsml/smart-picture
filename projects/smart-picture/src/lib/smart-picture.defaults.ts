@@ -12,6 +12,6 @@ export const DEFAULT_SETTINGS: SmartPictureSettings = {
   lazyLoad: true,
   heightRatio: null,
   widthRatio: null,
-  objectFit: 'contain',
-  objectPosition: 'center',
+  objectFit: 'initial',
+  objectPosition: '50% 50%',
 };

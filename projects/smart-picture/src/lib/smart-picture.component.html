@@ -3,8 +3,8 @@
   <ng-container *ngIf="pictureSettings.src">
     <source *ngIf="pictureSettings.src.url" [srcset]="pictureSettings.src.url" [type]="pictureSettings.src.type" />
     <img
-      [style.width]="isResponsive ? '100%' : 'inherit'"
-      [style.height]="isResponsive ? '100%' : 'inherit'"
+      [style.width]="bindIsResponsive ? '100%' : 'inherit'"
+      [style.height]="bindIsResponsive ? '100%' : 'inherit'"
       [attr.aria-hidden]="pictureSettings.ariaHidden"
       [alt]="pictureSettings.alt"
       [src]="pictureSettings.src.fallbackUrl ? pictureSettings.src.fallbackUrl : pictureSettings.src.url"
