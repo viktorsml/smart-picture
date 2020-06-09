@@ -1,10 +1,10 @@
 {
   "name": "smart-picture",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve smart-picture-in-app-testing",
-    "build": "ng build smart-picture",
+    "build": "ng build smart-picture --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
