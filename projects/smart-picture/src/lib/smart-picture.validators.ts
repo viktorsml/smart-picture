@@ -1,24 +1,25 @@
-import { MIMEType } from './smart-picture.interfaces';
-import { ObjectFitValues } from 'smart-picture';
+import { MIMEType, ObjectFitValues } from './smart-picture.interfaces';
 
 export interface ValidatorModifiers {
   isRequired?: boolean;
 }
 
-export class Validator {
-  public static readonly objectFitValues = ['fill', 'contain', 'cover', 'none', 'scale-down', 'inherit', 'initial', 'unset'];
-  public static readonly MIMETypes = [
-    'image/jpeg',
-    'image/apng',
-    'image/bmp',
-    'image/gif',
-    'image/x-icon',
-    'image/png',
-    'image/svg+xml',
-    'image/tiff',
-    'image/webp',
-  ];
+const objectFitValues = ['fill', 'contain', 'cover', 'none', 'scale-down', 'inherit', 'initial', 'unset'];
+const MIMETypes = [
+  'image/jpeg',
+  'image/apng',
+  'image/bmp',
+  'image/gif',
+  'image/x-icon',
+  'image/png',
+  'image/svg+xml',
+  'image/tiff',
+  'image/webp',
+];
 
+export class Validator {
+  public static objectFitValues = objectFitValues;
+  public static MIMETypes = MIMETypes;
   public static isValidImageUrl(imageUrl: string | null, modifiers: ValidatorModifiers = {}): boolean {
     if (!modifiers.isRequired && imageUrl === null) {
       return true;
@@ -36,7 +37,7 @@ export class Validator {
     if (!modifiers.isRequired && imageType === null) {
       return true;
     }
-    return this.MIMETypes.includes(imageType);
+    return MIMETypes.includes(imageType);
   }
 
   public static isValidString(value: string): boolean {
@@ -48,7 +49,7 @@ export class Validator {
   }
 
   public static isValidObjectFitValue(value: ObjectFitValues): boolean {
-    return this.objectFitValues.includes(value);
+    return objectFitValues.includes(value);
   }
 
   public static areValidAspectRatioValues(widthRatio: number | null, heightRatio: number | null): boolean {
