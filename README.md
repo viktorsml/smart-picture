@@ -252,4 +252,4 @@ By default every `ng-smart-picture` element will have inside a ``picture`element
 </ng-smart-picture>
 ```
 
-For more information about the `source` and `picture` element visit the [`<picture>` documentation](https://developer.mozilla.org/es/docs/Web/HTML/Elemento/picture).
+For more information about the `source` and `picture` element visit the [`<picture>` documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Elemento/picture).
